@@ -14,8 +14,8 @@ def login():
     
     #db logic
     
-@app.route('/api/login', methods=['POST'])
-def login():
+@app.route('/api/register', methods=['POST'])
+def register():
     # Get JSON data from request
     data = request.get_json()
 

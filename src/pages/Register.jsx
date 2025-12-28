@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import '../style/Form.css'; // Assuming you can reuse or adjust styles
-
+import '../style/Form.css';
 const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -15,7 +14,6 @@ const Register = () => {
 
   const { name, email, id, password, confirmPassword } = formData;
 
-  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -90,7 +88,6 @@ const Register = () => {
               onChange={handleChange}
               required
               disabled={loading}
-              placeholder="John Doe"
             />
           </div>
 
@@ -104,7 +101,6 @@ const Register = () => {
               onChange={handleChange}
               required
               disabled={loading}
-              placeholder="example@domain.com"
             />
           </div>
 
@@ -118,7 +114,6 @@ const Register = () => {
               onChange={handleChange}
               required
               disabled={loading}
-              placeholder="e.g., 2021001"
             />
           </div>
 

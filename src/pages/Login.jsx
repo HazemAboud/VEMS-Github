@@ -9,9 +9,14 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     setError('');
     setLoading(true);
-
+    if (!email || !password) {
+      setError('All fields are required');
+      setLoading(false);
+      return;
+    }
     try {
       const response = await fetch('http://localhost:5000/api/login', {
         method: 'POST',
@@ -44,37 +49,39 @@ const Login = () => {
 
         {error && <div className="error-message">{error}</div>}
 
-        <div className="input-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            disabled={loading}
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              disabled={loading}
+            />
+          </div>
 
-        <div className="input-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            disabled={loading}
-          />
-        </div>
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              disabled={loading}
+            />
+          </div>
 
-        <button
-          onClick={handleSubmit}
-          className="button"
-          disabled={loading}
-        >
-          {loading ? 'Signing in...' : 'Sign In'}
-        </button>
+          <button
+            type="submit"
+            className="button"
+            disabled={loading}
+          >
+            {loading ? 'Signing in...' : 'Sign In'}
+          </button>
+        </form>
 
         <p className="text-navigation">
           <a href="#">Forgot password?</a>
